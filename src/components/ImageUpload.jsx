@@ -109,8 +109,8 @@ const ImageUpload = () => {
       );
 
       const response = await axios.post(
-        "http://localhost:4000/api/parse-image",
-        //"https://backend-sdpy.onrender.com/api/parse-image",
+        // "http://localhost:4000/api/parse-image",
+        "https://backend-sdpy.onrender.com/api/parse-image",
         {
           files: files_array,
           includeSubject,
