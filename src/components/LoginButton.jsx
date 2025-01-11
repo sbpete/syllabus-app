@@ -16,9 +16,12 @@ function LoginButton() {
 
   const handleSuccess = async (credentialResponse) => {
     // Send the credential to your backend
-    const response = await axios.post("http://localhost:4000/api/auth/google", {
-      credential: credentialResponse.credential,
-    });
+    const response = await axios.post(
+      "http://backend-sdpy.onrender.com/api/auth/google",
+      {
+        credential: credentialResponse.credential,
+      }
+    );
 
     // Extract the user data from the response
     const user = response.data.user;
