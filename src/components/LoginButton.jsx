@@ -16,22 +16,29 @@ function LoginButton() {
 
   const handleSuccess = async (credentialResponse) => {
     // Send the credential to your backend
-    const response = await axios.post(
-      "http://backend-sdpy.onrender.com/api/auth/google",
-      {
-        credential: credentialResponse.credential,
-      }
-    );
+    try {
+      const response = await axios.post(
+        "https://backend-sdpy.onrender.com/api/auth/google",
+        { credential: credentialResponse.credential },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      // Extract the user data from the response
+      const user = response.data.user;
 
-    // Extract the user data from the response
-    const user = response.data.user;
+      // Store the user data in google context
+      console.log("Login successful", user);
 
-    // Store the user data in google context
-    console.log("Login successful", user);
-
-    // write to session storage
-    window.sessionStorage.setItem("user", JSON.stringify(user));
-    setUser(user);
+      // write to session storage
+      window.sessionStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const handleError = () => {
@@ -40,6 +47,7 @@ function LoginButton() {
 
   return (
     <div className="flex flex-row items-center gap-4">
+      {/* Google client id */}
       <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
       {user ? (
         <div className="flex flex-row items-center gap-2">

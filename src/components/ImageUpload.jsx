@@ -165,7 +165,7 @@ const ImageUpload = () => {
             <div className="flex flex-wrap w-full h-full gap-4">
               {fileURLs.length > 0 ? (
                 fileURLs.map((url, index) => (
-                  <div className="relative p-2 border rounded-lg">
+                  <div className="relative p-2 border rounded-lg" key={index}>
                     <Image
                       alt="uploaded file"
                       key={index}
