@@ -175,6 +175,9 @@ const ImageUpload = () => {
                       index={index}
                     />
                   ))}
+                  <p className="text-sm text-gray-500 absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    Click to add more files
+                  </p>
                 </div>
               ) : (
                 <div className="flex w-full h-full flex-col items-center text-center justify-center gap-2">
