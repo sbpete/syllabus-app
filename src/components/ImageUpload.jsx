@@ -11,7 +11,7 @@ import { TailSpin } from "react-loader-spinner";
 import Confetti from "react-confetti-boom";
 import "@/styles/animations.css";
 
-const fileTypes = ["JPG", "PNG", "PDF", "HEIC"];
+const fileTypes = ["JPG", "PNG", "PDF", "HEIC", "JPEG"];
 
 const CustomSwitch = ({ label, checked, onChange }) => {
   return (
