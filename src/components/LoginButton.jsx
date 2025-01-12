@@ -46,7 +46,7 @@ function LoginButton() {
   };
 
   return (
-    <div className="flex flex-row items-center gap-4">
+    <div className="flex flex-col sm:flex-row items-center gap-4">
       {/* Google client id */}
       <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
       {user ? (

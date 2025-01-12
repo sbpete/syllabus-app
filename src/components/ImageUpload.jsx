@@ -144,7 +144,7 @@ const ImageUpload = () => {
   };
 
   return (
-    <div className="flex flex-col items-start justify-center gap-6 w-full max-w-5xl">
+    <div className="flex flex-col items-center sm:items-start justify-center gap-6 w-full max-w-5xl">
       <div className="flex flex-col gap-2 w-full">
         <div
           className={`w-full h-[50vh] border bg-gray-200 p-4 text-black rounded-lg relative ${
@@ -160,33 +160,24 @@ const ImageUpload = () => {
             handleChange={handleChange}
             types={fileTypes}
             multiple={true}
-            disabled={true}
           >
-            <div className="flex flex-wrap w-full h-full gap-4">
+            <div className="w-full h-full rounded-lg sm:p-4">
               {fileURLs.length > 0 ? (
-                fileURLs.map((url, index) => (
-                  <div className="relative p-2 border rounded-lg" key={index}>
+                <div className="flex flex-wrap w-full gap-4 overflow-auto ">
+                  {fileURLs.map((url, index) => (
                     <Image
                       alt="uploaded file"
                       key={index}
                       src={url}
                       width={100}
                       height={100}
-                      className="rounded-lg w-32 h-32 object-cover border shadow-md"
+                      className="rounded-lg w-28 h-28 sm:w-32 sm:h-32 object-cover border shadow-md"
+                      index={index}
                     />
-                    <div className="absolute top-0 right-0 bg-white w-4 h-4 m-2 rounded-full" />
-
-                    <IoCloseCircle
-                      onClick={() => {
-                        setFileURLs(fileURLs.filter((_, i) => i !== index));
-                        setFiles(files.filter((_, i) => i !== index));
-                      }}
-                      className="absolute top-0 right-0 text-red-500 cursor-pointer w-6 h-6"
-                    />
-                  </div>
-                ))
+                  ))}
+                </div>
               ) : (
-                <div className="flex w-full flex-col items-center justify-center gap-2">
+                <div className="flex w-full h-full flex-col items-center text-center justify-center gap-2">
                   <MdFileUpload
                     size={64}
                     color="gray"
@@ -194,6 +185,9 @@ const ImageUpload = () => {
                   />
                   <p className="text-lg text-gray-500">
                     Drag and drop syllabus screenshots here
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    (or click to select files)
                   </p>
                 </div>
               )}
@@ -204,7 +198,10 @@ const ImageUpload = () => {
         {fileURLs.length > 0 && (
           <div className="flex gap-4 mt-4 border p-4 rounded-lg flex-wrap">
             {fileURLs.map((url, index) => (
-              <div key={index} className="flex gap-2">
+              <div
+                key={index}
+                className="flex gap-2 text-sm items-center sm:text-base"
+              >
                 <p>{files[index].name}</p>
                 <IoCloseCircle
                   onClick={() => {
@@ -220,11 +217,11 @@ const ImageUpload = () => {
       </div>
 
       {fileURLs.length > 0 && (
-        <div className="flex flex-col m-4 w-full items-center gap-4 -mb-4">
+        <div className="flex flex-col w-full items-center gap-4 mt-4">
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className={`bg-blue-500 hover:bg-blue-700 text-white font-extrabold py-2 px-20 rounded-full transition duration-300 text-lg ${
+            className={`bg-blue-500 hover:bg-blue-700 text-white font-extrabold py-2 px-24 rounded-full transition duration-300 text-lg ${
               loading ? "cursor-not-allowed animate-pulse" : "cursor-pointer"
             }`}
           >
@@ -235,7 +232,7 @@ const ImageUpload = () => {
       )}
 
       {sheetUrl && (
-        <div className={`flex flex-col gap-2 w-full items-center`}>
+        <div className={`flex flex-col gap-2 w-full items-center text-center`}>
           {isExploding && (
             <Confetti
               mode="boom"
@@ -244,21 +241,31 @@ const ImageUpload = () => {
               launchSpeed={0.7}
             />
           )}
-          <h2 className="text-xl font-bold">Your sheet is ready!</h2>
-          <a
-            href={sheetUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 underline hover:text-blue-700"
-          >
-            {sheetUrl}
-          </a>
+          <div className="flex flex-col gap-2 rounded-lg items-center">
+            <h2 className="text-xl">Your sheet is ready!</h2>
+            <a
+              href={sheetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline hover:text-blue-700 hidden sm:block"
+            >
+              {sheetUrl}
+            </a>
+            <a
+              className="bg-blue-500 hover:bg-blue-700 text-white font-extrabold py-2 px-24 rounded-full transition duration-300 text-lg"
+              href={sheetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Go to Sheet
+            </a>
+          </div>
         </div>
       )}
 
       {fileURLs.length > 0 && (
-        <div className="flex items-start gap-2 flex-col justify-between">
-          <h2 className="text-xl">Options</h2>
+        <div className="flex items-center sm:items-start gap-2 flex-col justify-between">
+          <h2 className="text-xl font-semibold">Options</h2>
           <div className="flex flex-col gap-2 border p-4 rounded-lg">
             <CustomSwitch
               label="📚 Include Subject"
