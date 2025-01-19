@@ -1,6 +1,7 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { useState, useEffect } from "react";
 import { IoCheckmarkCircle } from "react-icons/io5";
+import { endpoint } from "@/macros";
 import axios from "axios";
 
 function LoginButton() {
@@ -15,10 +16,11 @@ function LoginButton() {
   }, []);
 
   const handleSuccess = async (credentialResponse) => {
+    console.log("endpoint", endpoint);
     // Send the credential to your backend
     try {
       const response = await axios.post(
-        "https://backend-sdpy.onrender.com/api/auth/google",
+        endpoint + "/api/auth/google",
         { credential: credentialResponse.credential },
         {
           headers: {

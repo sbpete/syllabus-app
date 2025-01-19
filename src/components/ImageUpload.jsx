@@ -9,6 +9,7 @@ import { MdFileUpload } from "react-icons/md";
 import { IoCloseCircle } from "react-icons/io5";
 import { TailSpin } from "react-loader-spinner";
 import Confetti from "react-confetti-boom";
+import { endpoint } from "@/macros";
 import "@/styles/animations.css";
 
 const fileTypes = ["JPG", "PNG", "PDF", "HEIC", "JPEG"];
@@ -108,19 +109,15 @@ const ImageUpload = () => {
         })
       );
 
-      const response = await axios.post(
-        // "http://localhost:4000/api/parse-image",
-        "https://backend-sdpy.onrender.com/api/parse-image",
-        {
-          files: files_array,
-          includeSubject,
-          subject,
-          includeGrade,
-          includeStatus,
-          email: user.email,
-          name: user.name,
-        }
-      );
+      const response = await axios.post(endpoint + "/api/parse-image", {
+        files: files_array,
+        includeSubject,
+        subject,
+        includeGrade,
+        includeStatus,
+        email: user.email,
+        name: user.name,
+      });
 
       if (response.data.success) {
         // get link to the file
