@@ -17,6 +17,7 @@ function LoginButton() {
 
   const handleSuccess = async (credentialResponse) => {
     console.log("endpoint", endpoint);
+
     // Send the credential to your backend
     try {
       const response = await axios.post(
@@ -25,6 +26,7 @@ function LoginButton() {
         {
           headers: {
             "Content-Type": "application/json",
+            
           },
           withCredentials: true,
         }

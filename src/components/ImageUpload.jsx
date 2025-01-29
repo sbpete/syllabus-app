@@ -39,6 +39,7 @@ const ImageUpload = () => {
   const [subject, setSubject] = useState("");
   const [includeGrade, setIncludeGrade] = useState(true);
   const [includeStatus, setIncludeStatus] = useState(true);
+  const [includeICS, setIncludeICS] = useState(true);
 
   const [files, setFiles] = useState([]);
   const [fileURLs, setFileURLs] = useState([]);
@@ -115,6 +116,7 @@ const ImageUpload = () => {
         subject,
         includeGrade,
         includeStatus,
+        includeICS,
         email: user.email,
         name: user.name,
       });
@@ -144,7 +146,7 @@ const ImageUpload = () => {
     <div className="flex flex-col items-center sm:items-start justify-center gap-6 w-full max-w-5xl">
       <div className="flex flex-col gap-2 w-full">
         <div
-          className={`w-full h-[50vh] border bg-gray-200 p-4 text-black rounded-lg relative ${
+          className={`w-full h-[50vh] border bg-gray-200 p-4 text-black rounded-xl relative ${
             loading ? "animate-pulse" : ""
           }`}
         >
@@ -225,7 +227,7 @@ const ImageUpload = () => {
               loading ? "cursor-not-allowed animate-pulse" : "cursor-pointer"
             }`}
           >
-            {loading ? "Loading..." : "Create Sheet"}
+            {loading ? "Loading..." : "Generate"}
           </button>
           <p className="text-red-500">{error}</p>
         </div>
@@ -291,6 +293,12 @@ const ImageUpload = () => {
               label="📊 Track Progress"
               checked={includeStatus}
               onChange={(checked) => setIncludeStatus(checked)}
+            />
+
+            <CustomSwitch
+              label="📅 Add to Calendar"
+              checked={includeICS}
+              onChange={(checked) => setIncludeICS(checked)}
             />
           </div>
         </div>
