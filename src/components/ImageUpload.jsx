@@ -124,6 +124,7 @@ const ImageUpload = () => {
       if (response.data.success) {
         // get link to the file
         console.log("Sheet URL:", response.data.sheetUrl);
+        console.log("ICS:", response.data.ics);
         setSheetUrl(response.data.sheetUrl);
         setIsExploding(true);
         setTimeout(() => setIsExploding(false), 3000);
