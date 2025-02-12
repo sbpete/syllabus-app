@@ -49,20 +49,13 @@ const ImageUpload = () => {
 
   const [isExploding, setIsExploding] = useState(false);
 
-  const downloadSheetFromText = async (text) => {
-    // download the file
-    const fileContent = text;
-    const fileName = "syllabus.csv";
-    const blob = new Blob([fileContent], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName;
-    a.style.display = "none";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const downloadIcsFromText = (text) => {
+    const element = document.createElement("a");
+    const file = new Blob([text], { type: "text/calendar" });
+    element.href = URL.createObjectURL(file);
+    element.download = "syllabus.ics";
+    document.body.appendChild(element);
+    element.click();
   };
 
   const handleChange = (files) => {
@@ -128,6 +121,11 @@ const ImageUpload = () => {
         setSheetUrl(response.data.sheetUrl);
         setIsExploding(true);
         setTimeout(() => setIsExploding(false), 3000);
+
+        // download ics file
+        if (includeICS) {
+          downloadIcsFromText(response.data.ics);
+        }
 
         // reset form
         setFileURLs([]);

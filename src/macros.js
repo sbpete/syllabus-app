@@ -4,6 +4,6 @@ const endpoints = [
   "https://1z0m1zjtv7.execute-api.us-east-1.amazonaws.com/dev",
 ];
 
-const endpoint = endpoints[0];
+const endpoint = endpoints[2];
 
 export { endpoint };
