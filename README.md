@@ -1,3 +1,35 @@
+![Syllabuddy Demo](./screenshot1.png)
+
+# Syllabuddy – From Syllabus Screenshot to Organized Spreadsheet
+
+**Team:** Sam Peters
+
+## Summary
+
+Syllabuddy is a web application that streamlines academic planning by converting a syllabus screenshot into a structured Google Sheet. It uses Google Cloud Vision to extract text from images and intelligently parses it into tasks, dates, and descriptions. The resulting spreadsheet includes built-in formatting that helps students track assignments, deadlines, and progress effortlessly.
+
+## Features
+
+- Converts syllabus images into organized Google Sheets  
+- Automatically extracts assignment names, due dates, and descriptions  
+- Conditional formatting for upcoming deadlines and completed tasks  
+- Mobile responsive for easy access on the go
+
+## Tools & Technologies
+
+- Google Cloud Vision API – for text extraction from syllabus images  
+- Google Sheets API – for programmatically generating and updating spreadsheets  
+- React – responsive frontend UI  
+- JavaScript / Node.js – backend logic  
+- Firebase – (optional) for authentication or storage
+
+## Challenges & Solutions
+
+Parsing diverse syllabus formats required a flexible and resilient text interpretation system. Some syllabi used bullet points and others used tables, which introduced complexity in how we structured spreadsheet rows. To address this, we used pattern-matching logic and fallback heuristics to handle edge cases.
+
+Another challenge was aligning due dates to a calendar format and applying conditional formatting that visually prioritizes urgent or incomplete tasks. We added color-coded status flags and filters to enhance usability for students managing multiple classes.
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
